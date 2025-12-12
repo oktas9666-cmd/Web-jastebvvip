@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JASTEB VVIP - Order Panel Akun Game Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .container {
+            background: linear-gradient(145deg, #121212, #1a1a1a);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(90deg, #1a237e, #311b92);
+            border-bottom: 3px solid #00e5ff;
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4081;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(255, 64, 129, 0.4);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 229, 255, 0.3);
+            color: #00e5ff;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #bb86fc;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 64, 129, 0.2);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #ff80ab;
+        }
+        
+        section {
+            padding: 25px;
+            border-bottom: 1px solid #333;
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #00e5ff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            font-size: 1.5rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .price-item {
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+        }
+        
+        .price-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+            border-color: #00e5ff;
+        }
+        
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00e5ff;
+            margin-bottom: 5px;
+        }
+        
+        .price-desc {
+            font-size: 0.95rem;
+            color: #bbbbbb;
+        }
+        
+        .package-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .package-container {
+                flex-direction: row;
+            }
+        }
+        
+        .package {
+            flex: 1;
+            background: rgba(26, 35, 126, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+        
+        .package-basic {
+            border-color: #00e5ff;
+        }
+        
+        .package-basic::before {
+            background: #00e5ff;
+        }
+        
+        .package-vip {
+            border-color: #ff4081;
+        }
+        
+        .package-vip::before {
+            background: #ff4081;
+        }
+        
+        .package-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+        
+        .package-basic .package-title {
+            color: #00e5ff;
+        }
+        
+        .package-vip .package-title {
+            color: #ff4081;
+        }
+        
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .package-basic .package-price {
+            color: #00e5ff;
+        }
+        
+        .package-vip .package-price {
+            color: #ff4081;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list i {
+            font-size: 1.2rem;
+        }
+        
+        .package-basic .feature-list i {
+            color: #00e5ff;
+        }
+        
+        .package-vip .feature-list i {
+            color: #ff4081;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .process-steps {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            background: rgba(30, 30, 46, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #444;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #00e5ff;
+            color: #0a0a0a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #00e5ff;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: rgba(30, 30, 46, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #bb86fc;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #bb86fc;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            color: #cccccc;
+        }
+        
+        .result-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .result-item {
+            background: rgba(187, 134, 252, 0.15);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(187, 134, 252, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(26, 35, 126, 0.2);
+            border-top: 1px solid #333;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #00e5ff, #00b8d4);
+            color: #0a0a0a;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 229, 255, 0.6);
+        }
+        
+        .contact-note {
+            color: #bbbbbb;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+        
+        .warning {
+            background: rgba(255, 64, 129, 0.1);
+            border: 1px solid rgba(255, 64, 129, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: center;
+            color: #ff80ab;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">VVIP EDITION</div>
+            <h1>HAI IZ JASTEB</h1>
+            <p class="subtitle">LAGI <span class="highlight">OPEN</span> ORDER JASTEB VVIP!</p>
+            <p>Panel akun game premium dengan result maksimal. Proses cepat, aman, dan terpercaya.</p>
+        </header>
+        
+        <section>
+            <h2><i class="fas fa-crown"></i> LIST JASTEB VVIP IZ</h2>
+            <p>Pilih paket result sesuai kebutuhan dan budget kamu. Semakin besar investasi, semakin banyak result yang didapat.</p>
+            
+            <div class="pricing-grid">
+                <div class="price-item">
+                    <div class="price-amount">1K</div>
+                    <div class="price-desc">50+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">2K</div>
+                    <div class="price-desc">100+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">3K</div>
+                    <div class="price-desc">150+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">4K</div>
+                    <div class="price-desc">200+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">5K</div>
+                    <div class="price-desc">250+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">6K</div>
+                    <div class="price-desc">300+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">7K</div>
+                    <div class="price-desc">350+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">8K</div>
+                    <div class="price-desc">400+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">9K</div>
+                    <div class="price-desc">450+ RESULT</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-amount">10K</div>
+                    <div class="price-desc">500+ RESULT</div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-gem"></i> PAKET JASTEB TERPOPULER</h2>
+            <p>Dua paket andalan dengan keuntungan maksimal. Pilih sesuai kebutuhan bisnis kamu.</p>
+            
+            <div class="warning">
+                <i class="fas fa-exclamation-circle"></i> <strong>PROMO TERBATAS:</strong> Order hari ini dapat BONUS akses panel tambahan!
+            </div>
+            
+            <div class="package-container">
+                <div class="package package-basic">
+                    <h3 class="package-title">OPEN PT JASTEB 3K</h3>
+                    <div class="package-price">3K</div>
+                    
+                    <ul class="feature-list">
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> DAPAT 2 PANEL GB</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> BISA JUALAN JASTEB</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> BISA JUALAN UNCEK</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> BISA CEK2 JASTEB</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> BISA JUAL ECREAN</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> BISA JUAL GMAIL</li>
+                        <li><span class="icon"><i class="fas fa-check-circle"></i></span> DLL (Fitur Lainnya)</li>
+                    </ul>
+                </div>
+                
+                <div class="package package-vip">
+                    <h3 class="package-title">OPEN PT JASTEB VVIP 5K</h3>
+                    <div class="package-price">5K</div>
+                    
+                    <ul class="feature-list">
+                        <li><span class="icon"><i class="fas fa-star"></i></span> <strong>NO PT2</strong> (Tanpa Potongan)</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> DAPAT PANEL PRIBADI 1</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> DAPAT PANEL 2 GB</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> BISA JUALAN UNCEK</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> BISA JUALAN JASTEB</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> BISA JUAL ECEREAN</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> BISA JUALAN GMAIL</li>
+                        <li><span class="icon"><i class="fas fa-star"></i></span> DLL (Fitur Eksklusif Lainnya)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-play-circle"></i> PROSES ORDER MUDAH</h2>
+            <p>Hanya 4 langkah sederhana untuk mendapatkan akses JASTEB VVIP:</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">TRANSFER</div>
+                    <p>Lakukan pembayaran sesuai paket pilihan</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">SEND MAIL</div>
+                    <p>Kirim bukti transfer ke kontak kami</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">CEK EMAIL</div>
+                    <p>Pantau email untuk mendapatkan akses</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">DONE</div>
+                    <p>Akses panel siap digunakan</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-question-circle"></i> PERTANYAAN UMUM</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">🗣️: RESULT ITU APA?</div>
+                <div class="faq-answer">
+                    🗿 ME: <strong>RESULT ITU AKUN-AKUN PREMIUM</strong> yang bisa didapatkan, meliputi:
+                    <div class="result-list">
+                        <div class="result-item">Mobile Legends (ML)</div>
+                        <div class="result-item">Free Fire (FF)</div>
+                        <div class="result-item">PUBG</div>
+                        <div class="result-item">TikTok (TT)</div>
+                        <div class="result-item">Stumble Guys</div>
+                        <div class="result-item">PES</div>
+                        <div class="result-item">FIFA</div>
+                        <div class="result-item">Instagram (IG)</div>
+                        <div class="result-item">dan game/akun lainnya</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">🗣️: PROSESNYA GMN BANG? GA PAHAM AKU</div>
+                <div class="faq-answer">
+                    🗿 ME: Prosesnya sangat mudah!<br><br>
+                    <strong>1. TRANSFER</strong> → Bayar sesuai paket yang kamu pilih<br>
+                    <strong>2. SEND MAIL</strong> → Kirim bukti transfer ke WhatsApp kami<br>
+                    <strong>3. CEK EMAIL</strong> → Pantau email kamu untuk mendapatkan akses panel<br>
+                    <strong>4. DONE</strong> → Panel siap digunakan!<br><br>
+                    <em>Biasanya proses selesai dalam waktu 1-2 jam setelah pembayaran dikonfirmasi.</em>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">🗣️: PEMBAYARAN VIA APA SAJA?</div>
+                <div class="faq-answer">
+                    🗿 ME: Kami menerima pembayaran via:<br>
+                    • Dana<br>
+                    • OVO<br>
+                    • GoPay<br>
+                    • Transfer Bank (BNI, BRI, BCA, Mandiri)<br>
+                    • QRIS<br>
+                    <em>Detail rekening akan diberikan setelah konfirmasi order.</em>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <h2><i class="fas fa-comments"></i> SIAP ORDER JASTEB VVIP?</h2>
+            <p>Jangan lewatkan kesempatan dapat panel akun game premium dengan result terbanyak!</p>
+            
+            <a href="https://wa.me/62881010367177" class="cta-button">
+                <i class="fab fa-whatsapp"></i> ORDER VIA WHATSAPP SEKARANG
+            </a>
+            
+            <p class="contact-note">
+                Klik tombol di atas atau hubungi langsung:<br>
+                <strong>WA: 62881010367177</strong>
+            </p>
+            
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #888;">
+                © 2025 JASTEB VVIP BY IZ. Semua fitur dan result sesuai paket yang dipilih.
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Efek hover untuk item harga
+        document.querySelectorAll('.price-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 229, 255, 0.2)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Animasi untuk tombol WhatsApp
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        ctaButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        
+        // Auto-year update
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.querySelector('footer p:last-of-type');
+            if (yearElement) {
+                y
